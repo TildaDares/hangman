@@ -21,7 +21,7 @@ class Hangman
   end
 
   def save_game
-    File.open('./saved_games/yourgame.yml', 'w') { |f| YAML.dump([] << self, f)}
+    File.open('./saved_games/yourgame.yml', 'w') {|f| YAML.dump([] << self, f)}
     exit
   end
 
@@ -35,6 +35,7 @@ class Hangman
       yaml = YAML.load_file('./saved_games/hangman.yml')
     else
       yaml = YAML.load_file('./saved_games/yourgame.yml')
+      p yaml[0].random_word
     end
        @random_word = yaml['random_word']
        @rand_word_array = yaml['rand_word_array']
