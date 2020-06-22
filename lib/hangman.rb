@@ -35,7 +35,6 @@ class Hangman
       yaml = YAML.load_file('./saved_games/hangman.yml')
     else
       yaml = YAML.load_file('./saved_games/yourgame.yml')
-      p yaml[0]['random_word']
     end
        @random_word = yaml['random_word']
        @rand_word_array = yaml['rand_word_array']
