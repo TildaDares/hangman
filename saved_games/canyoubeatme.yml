@@ -1,0 +1,23 @@
+---
+  incorrect_guesses_remaining: 7
+  incorrect_letters:
+  - " "
+  - "\e[0;31;49ml\e[0m"
+  - " "
+  - "\e[0;31;49ms\e[0m"
+  - " "
+  - "\e[0;31;49md\e[0m"
+  random_word: commutative
+  rand_word_array:
+  - c
+  - "-"
+  - "-"
+  - "-"
+  - u
+  - "-"
+  - a
+  - "-"
+  - i
+  - "-"
+  - "-"
+

@@ -1,0 +1,17 @@
+---
+  incorrect_guesses_remaining: 8
+  incorrect_letters:
+  - " "
+  - "\e[0;31;49mq\e[0m"
+  - " "
+  - "\e[0;31;49ms\e[0m"
+  random_word: locality
+  rand_word_array:
+  - l
+  - "-"
+  - c
+  - "-"
+  - l
+  - "-"
+  - "-"
+  - "-"

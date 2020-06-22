@@ -1,0 +1,25 @@
+---
+- !ruby/object:Hangman
+  incorrect_guesses_remaining: 5
+  incorrect_letters:
+  - " "
+  - "\e[0;31;49mi\e[0m"
+  - " "
+  - "\e[0;31;49mo\e[0m"
+  - " "
+  - "\e[0;31;49mw\e[0m"
+  - " "
+  - "\e[0;31;49ms\e[0m"
+  - " "
+  - "\e[0;31;49mf\e[0m"
+  random_word: turntable
+  rand_word_array:
+  - "-"
+  - u
+  - "-"
+  - "-"
+  - "-"
+  - a
+  - b
+  - "-"
+  - "-"
