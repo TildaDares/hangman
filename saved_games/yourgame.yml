@@ -1,12 +1,25 @@
---- !ruby/object:Hangman
-incorrect_guesses_remaining: 10
-incorrect_letters: []
-random_word: equably
+---
+random_word: playsuit
 rand_word_array:
-- e
-- "-"
-- "-"
+- p
+- l
 - a
+- y
+- s
 - "-"
-- "-"
-- "-"
+- i
+- t
+incorrect_guesses_remaining: 2
+incorrect_letters:
+- " "
+- "\e[0;31;49me\e[0m"
+- " "
+- "\e[0;31;49mc\e[0m"
+- " "
+- "\e[0;31;49mo\e[0m"
+- " "
+- "\e[0;31;49md\e[0m"
+- " "
+- "\e[0;31;49mw\e[0m"
+- " "
+- "\e[0;31;49mr\e[0m"
