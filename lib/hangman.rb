@@ -1,3 +1,5 @@
+# frozen_string_literal :true
+
 require 'colorize'
 require 'yaml'
 class Hangman
@@ -9,11 +11,9 @@ class Hangman
 
   def create_random_word
     five_to_twelve_lettered_words = []
-    dictionary = File.open('5desk.txt','r')
+    dictionary = File.open('5desk.txt', 'r')
     dictionary.each_line do |words|
-      if words.chomp.length >= 5 && words.chomp.length <= 12
-        five_to_twelve_lettered_words << words.chomp
-      end
+      five_to_twelve_lettered_words << words.chomp if words.chomp.length >= 5 && words.chomp.length <= 12
     end
     dictionary.close
     @random_word = five_to_twelve_lettered_words.sample
@@ -27,39 +27,37 @@ class Hangman
       'incorrect_guesses_remaining' => @incorrect_guesses_remaining,
       'incorrect_letters' => @incorrect_letters
     }
-    File.open('./saved_games/yourgame.yml', 'w') {|f| YAML.dump(hash, f)}
+    File.open('./saved_games/yourgame.yml', 'w') { |f| YAML.dump(hash, f) }
     exit
   end
 
   def load_game(game_choice)
-    case game_choice
-    when '1'
-      yaml = YAML.load_file('./saved_games/barbs.yml')
-    when '2'
-      yaml = YAML.load_file('./saved_games/canyoubeatme.yml')
-    when '3'
-      yaml = YAML.load_file('./saved_games/hangman.yml')
-    else
-      yaml = YAML.load_file('./saved_games/yourgame.yml')
-    end
-       @random_word = yaml['random_word']
-       @rand_word_array = yaml['rand_word_array']
-       @incorrect_guesses_remaining = yaml['incorrect_guesses_remaining']
-       @incorrect_letters = yaml['incorrect_letters']
-      game
+    yaml = case game_choice
+           when '1'
+             YAML.load_file('./saved_games/barbs.yml')
+           when '2'
+             YAML.load_file('./saved_games/canyoubeatme.yml')
+           when '3'
+             YAML.load_file('./saved_games/hangman.yml')
+           else
+             YAML.load_file('./saved_games/yourgame.yml')
+           end
+    @random_word = yaml['random_word']
+    @rand_word_array = yaml['rand_word_array']
+    @incorrect_guesses_remaining = yaml['incorrect_guesses_remaining']
+    @incorrect_letters = yaml['incorrect_letters']
+    game
   end
 
   def check_random_word_array(guess, word, array)
-    if word.include? (guess)
+    if word.include? guess
       word.each_with_index do |letters, idx|
-        if letters == guess
-          array[idx] = guess
-        end
+        array[idx] = guess if letters == guess
       end
     else
       @incorrect_guesses_remaining -= 1
       if /#{guess}/ =~ @incorrect_letters.to_s
-        #do nothing
+        # do nothing
       else
         @incorrect_letters << ' ' << guess.red
       end
@@ -75,7 +73,7 @@ class Hangman
     end
     false
   end
- 
+
   def incorrect_color(guesses_remaining)
     if guesses_remaining >= 7
       puts "Incorrect guesses remaining: #{@incorrect_guesses_remaining}".green
@@ -87,12 +85,12 @@ class Hangman
   end
 
   def game
-    until @incorrect_guesses_remaining == 0
-      puts "#{@rand_word_array.join('')}  #{@incorrect_letters.join}\n\n" 
+    until @incorrect_guesses_remaining.zero?
+      puts "#{@rand_word_array.join('')}  #{@incorrect_letters.join}\n\n"
       puts "Enter your guess (single letters only and no duplicates) or type 'save' to save your game"
       letter_guess = gets.chomp
       if /save/i =~ letter_guess
-        save_game 
+        save_game
       else
         until /^[a-z]$/i =~ letter_guess || @rand_word_array.include?(letter_guess)
           puts 'Invalid!'.red

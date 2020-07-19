@@ -1,3 +1,5 @@
+# frozen_string_literal :true
+
 require_relative 'hangman'
 puts 'Would you like to?'
 puts '1. Load a game'
